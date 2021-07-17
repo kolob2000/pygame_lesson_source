@@ -42,6 +42,9 @@ class Player(pygame.sprite.Sprite):
 
         self.current_shooting_cooldown = 0
 
+        self.plasmoids_sound = pygame.mixer.Sound('sounds/vyiigryish.wav')
+
+
     def update(self):
         keys = pygame.key.get_pressed()
 
@@ -62,6 +65,7 @@ class Player(pygame.sprite.Sprite):
         if keys[pygame.K_SPACE] and self.current_shooting_cooldown <= 0:
             self.plasmoids.add(Plasmoid(self.rect.midtop))
             self.current_shooting_cooldown = self.shooting_cooldown
+            self.plasmoids_sound.play()
         else:
             self.current_shooting_cooldown -= self.clock.get_time()
 
